@@ -1,0 +1,23 @@
+{
+  "name": "@yusham/blangko",
+  "description": "Start business from a blank project",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "routify && bun bun.build.js",
+    "start": "bun bun.server.js"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@roxi/routify": "3.0.0-next.119",
+    "bun-types": "^0.1.11",
+    "svelte": "^3.50.1",
+    "svelte-paginate": "^0.0.1"
+  },
+  "routify": {
+    "routesDir": {
+      "default": "app_ui/pages"
+    }
+  }
+}
