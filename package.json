@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "routify && bun bun.build.js",
+    "build": "routify && rm -rf public/assets/* && bun bun.build.js",
     "start": "bun bun.server.js"
   },
   "dependencies": {

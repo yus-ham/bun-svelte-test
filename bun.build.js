@@ -62,14 +62,15 @@ const plugins = [
                     }
                 ])
 
+                Object.entries(alias).forEach(([key, value]) => {
+                    contents.code = contents.code.replace(new RegExp(`(['"])${key}/`, `g`), `$1${value}/`)
+                })
+
                 contents = compile(contents.code, {
                     filename: path,
-                    // generate: "ssr",
+                    //generate: "ssr",
                 }).js.code;
 
-                Object.entries(alias).forEach(([key, value]) => {
-                    contents = contents.replace(new RegExp(`(['"])${key}/`, `g`), `$1${value}/`)
-                })
 
                 // const file = parse(path)
                 // const dir = file.dir.slice(process.cwd().length)
@@ -124,12 +125,17 @@ const plugins = [
 
 
 const output = await Bun.build({
-    entrypoints: ['./app_ui/app.ts'],
+    entrypoints: [
+        './app_ui/app.ts',
+        './.routify/instance.default.js',
+        // './.routify/render.js',
+    ],
     outdir: 'public/assets',
-    splitting: false,
+    splitting: true,
     plugins,
-
-    // loader?: { [k in string]: string }; // see https://bun.sh/docs/bundler/loaders
+    // loader: {
+    //     '.svelte': 'svelte'
+    // }, // see https://bun.sh/docs/bundler/loaders
     // external?: string[]; // default []
     // sourcemap?: "none" | "inline" | "external"; // default "none"
     // root?: string; // default: computed from entrypoints
